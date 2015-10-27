@@ -15,11 +15,23 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let urlString: String = self.navigationController?.tabBarItem.tag == 0 ? "https://api.whitehouse.gov/v1/petitions.json?limit=100" : "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&amp;limit=100"
 
-        guard let petitionsUrl = NSURL(string: "https://api.whitehouse.gov/v1/petitions.json?limit=100") else { return }
-        let data = try? NSData(contentsOfURL: petitionsUrl, options: [])
-        let json = JSON(data: data!)
-        if json["metadata"]["responseInfo"]["status"].intValue == 200 { self.parseJSON(json) }
+        guard let petitionsUrl = NSURL(string: urlString) else {
+            self.showError()
+            return
+        }
+        guard let data = try? NSData(contentsOfURL: petitionsUrl, options: []) else {
+            self.showError()
+            return
+        }
+        let json = JSON(data: data)
+        guard json["metadata"]["responseInfo"]["status"].intValue == 200 else {
+            self.showError()
+            return
+        }
+        self.parseJSON(json)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -32,7 +44,7 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARKL - Custom Methods
+    // MARK: - Custom Methods
     
     func parseJSON(jsonData: JSON) {
         for jsonResult in jsonData["results"].arrayValue {
@@ -43,6 +55,12 @@ class MasterViewController: UITableViewController {
             self.objects.append(eachPetition)
         }
         self.tableView.reloadData()
+    }
+    
+    func showError() {
+        let alertController = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
     // MARK: - Segues
