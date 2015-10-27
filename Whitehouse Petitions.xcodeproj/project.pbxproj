@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		659C1B0F1BDF4A3100349775 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659C1B0E1BDF4A3100349775 /* SwiftyJSON.swift */; };
 		65C1AE8B1B7C90EB00B3D01C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C1AE8A1B7C90EB00B3D01C /* AppDelegate.swift */; };
 		65C1AE8D1B7C90EB00B3D01C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C1AE8C1B7C90EB00B3D01C /* MasterViewController.swift */; };
 		65C1AE8F1B7C90EB00B3D01C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C1AE8E1B7C90EB00B3D01C /* DetailViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		659C1B0E1BDF4A3100349775 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		65C1AE871B7C90EB00B3D01C /* Whitehouse Petitions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Whitehouse Petitions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C1AE8A1B7C90EB00B3D01C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65C1AE8C1B7C90EB00B3D01C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				65C1AE901B7C90EB00B3D01C /* Main.storyboard */,
 				65C1AE931B7C90EB00B3D01C /* Assets.xcassets */,
 				65C1AE951B7C90EB00B3D01C /* LaunchScreen.storyboard */,
+				659C1B0E1BDF4A3100349775 /* SwiftyJSON.swift */,
 				65C1AE981B7C90EB00B3D01C /* Info.plist */,
 			);
 			path = "Whitehouse Petitions";
@@ -140,6 +143,7 @@
 				65C1AE8F1B7C90EB00B3D01C /* DetailViewController.swift in Sources */,
 				65C1AE8D1B7C90EB00B3D01C /* MasterViewController.swift in Sources */,
 				65C1AE8B1B7C90EB00B3D01C /* AppDelegate.swift in Sources */,
+				659C1B0F1BDF4A3100349775 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 				65C1AE9D1B7C90EB00B3D01C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

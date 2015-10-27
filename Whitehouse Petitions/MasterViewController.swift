@@ -11,12 +11,15 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [AnyObject]()
-
+    var objects = Array<Dictionary<String, String>>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        guard let petitionsUrl = NSURL(string: "https://api.whitehouse.gov/v1/petitions.json?limit=100") else { return }
+        let data = try? NSData(contentsOfURL: petitionsUrl, options: [])
+        let json = JSON(data: data!)
+        if json["metadata"]["responseInfo"]["status"].intValue == 200 { self.parseJSON(json) }
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -27,6 +30,19 @@ class MasterViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARKL - Custom Methods
+    
+    func parseJSON(jsonData: JSON) {
+        for jsonResult in jsonData["results"].arrayValue {
+            let petitionTitle = jsonResult["title"].stringValue
+            let petitionBody = jsonResult["body"].stringValue
+            let petitionSignatures = jsonResult["signatureCount"].stringValue
+            let eachPetition = ["title": petitionTitle, "body": petitionBody, "signature": petitionSignatures]
+            self.objects.append(eachPetition)
+        }
+        self.tableView.reloadData()
     }
 
     // MARK: - Segues
@@ -57,7 +73,8 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
         let object = objects[indexPath.row]
-        cell.textLabel!.text = object.description
+        cell.textLabel!.text = object["title"]
+        cell.detailTextLabel!.text = object["body"]
         return cell
     }
 
